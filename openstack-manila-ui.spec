@@ -6,7 +6,7 @@
 
 Name:           openstack-%{pypi_name}
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -38,7 +38,7 @@ BuildRequires:  python-testtools
 Requires: python-babel
 Requires: python-django
 Requires: python-django-compressor
-Requires: python-django-horizonw
+Requires: python-django-horizon
 Requires: python-django-openstack-auth
 Requires: python-iso8601
 Requires: python-keystoneclient
@@ -103,5 +103,8 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 
 %changelog
+* Thu Jul 09 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1.0.0-2
+- Fix a typo in Requires
+
 * Sun Jun 14 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1.0.0-1
 - Initial package
