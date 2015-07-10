@@ -5,8 +5,8 @@
 %bcond_with tests
 
 Name:           openstack-%{pypi_name}
-Version:        1.0.0
-Release:        2%{?dist}
+Version:        1.0.1
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -103,6 +103,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 
 %changelog
+* Fri Jul 10 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1.0.1-1
+- Upstream 1.0.1
+
 * Thu Jul 09 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1.0.0-2
 - Fix a typo in Requires
 
