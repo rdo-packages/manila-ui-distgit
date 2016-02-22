@@ -4,9 +4,11 @@
 # tests are disabled by default
 %bcond_with tests
 
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+
 Name:           openstack-%{pypi_name}
-Version:        1.0.1
-Release:        2%{?dist}
+Version:        XXX
+Release:        XXX
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -52,7 +54,7 @@ Manila Management Dashboard
 
 
 %prep
-%setup -q -n %{pypi_name}-%{version}
+%setup -q -n %{pypi_name}-%{upstream_version}
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
@@ -95,7 +97,7 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %doc html README.rst doc/source/readme.rst
 %license LICENSE
 %{python2_sitelib}/%{mod_name}
-%{python2_sitelib}/manila_ui-%{version}-py?.?.egg-info
+%{python2_sitelib}/manila_ui-*-py?.?.egg-info
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90_manila_admin_shares.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90_manila_project_shares.py*
 %{_sysconfdir}/openstack-dashboard/enabled/_90_manila_admin_shares.py*
@@ -103,14 +105,4 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 
 %changelog
-* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.1-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
-* Fri Jul 10 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1.0.1-1
-- Upstream 1.0.1
-
-* Thu Jul 09 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1.0.0-2
-- Fix a typo in Requires
-
-* Sun Jun 14 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1.0.0-1
-- Initial package
