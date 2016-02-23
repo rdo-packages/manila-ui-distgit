@@ -5,8 +5,8 @@
 %bcond_with tests
 
 Name:           openstack-%{pypi_name}
-Version:        1.0.1
-Release:        2%{?dist}
+Version:        1.2.0
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -103,6 +103,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 
 %changelog
+* Tue Feb 23 2016 Haikel Guemar <hguemar@fedoraproject.org> 1.2.0-1
+- Update to 1.2.0
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
