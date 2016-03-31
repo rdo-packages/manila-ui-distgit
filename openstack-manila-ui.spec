@@ -7,13 +7,13 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:           openstack-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        2.1.0
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
-Source0:        https://pypi.python.org/packages/source/m/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
+Source0:        https://pypi.python.org/packages/source/m/%{pypi_name}/%{pypi_name}-%{version}%{?milestone}.tar.gz
 BuildArch:      noarch
  
 BuildRequires:  python2-devel
@@ -106,3 +106,5 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 %changelog
 
+* Thu Mar 31 2016 RDO <rdo-list@redhat.com> 2.1.0-1
+- RC1 Rebuild for Mitaka RC1 
