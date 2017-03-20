@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa98f980_dbac9f8f",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2017-03-20T18:47:21Z",
+      "side": 1,
+      "message": "Should also be replaced by call via setup.py like in updated example spec:\nhttps://github.com/openstack-packages/openstack-example-spec/blob/master/openstack-example.spec#L101-L102\nbut this can be a followup change.",
+      "revId": "d3593db453ba90b850dc375a8d8c1509d5b34767",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
