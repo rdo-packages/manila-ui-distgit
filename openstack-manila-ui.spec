@@ -58,6 +58,11 @@ Manila Management Dashboard
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
+rm test-requirements.txt
+
+%build
+%{__python2} setup.py build
+
 # generate html docs 
 sphinx-build doc/source html
 # remove the sphinx-build leftovers
@@ -68,11 +73,6 @@ for lib in %{mod_name}/dashboards/project/*.py; do
   touch -r $lib $lib.new &&
   mv $lib.new $lib
 done
-
-rm test-requirements.txt
-
-%build
-%{__python2} setup.py build
 
 
 %install
