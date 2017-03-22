@@ -7,7 +7,7 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:           openstack-%{pypi_name}
-Version:        2.7.0
+Version:        2.7.1
 Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
@@ -108,6 +108,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 
 %changelog
+* Wed Mar 22 2017 Alfredo Moralejo <amoralej@redhat.com> 2.7.1-1
+- Update to 2.7.1
+
 * Mon Feb 13 2017 Alfredo Moralejo <amoralej@redhat.com> 2.7.0-1
 - Update to 2.7.0
 
