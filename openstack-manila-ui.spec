@@ -79,14 +79,10 @@ done
 %{__python2} setup.py install --skip-build --root %{buildroot}
 
 # Move config to horizon
-mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d
-mv manila_ui/local/enabled/_90_manila_admin_shares.py %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled/_90_manila_admin_shares.py
-mv manila_ui/local/enabled/_90_manila_project_shares.py %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled/_90_manila_project_shares.py
-ln -s %{_sysconfdir}/openstack-dashboard/enabled/_90_manila_admin_shares.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90_manila_admin_shares.py
-ln -s %{_sysconfdir}/openstack-dashboard/enabled/_90_manila_project_shares.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90_manila_project_shares.py
-mv manila_ui/local/local_settings.d/_90_manila_shares.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_shares.py
+mv manila_ui/local/enabled/_*.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
+mv manila_ui/local/local_settings.d/_90_manila_*.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/
 
 
 %check
@@ -100,12 +96,8 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %license LICENSE
 %{python2_sitelib}/%{mod_name}
 %{python2_sitelib}/manila_ui-*-py?.?.egg-info
-%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90_manila_admin_shares.py*
-%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90_manila_project_shares.py*
-%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_shares.py*
-%{_sysconfdir}/openstack-dashboard/enabled/_90_manila_admin_shares.py*
-%{_sysconfdir}/openstack-dashboard/enabled/_90_manila_project_shares.py*
+%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_*.py*
+%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*
 
 
 %changelog
-
