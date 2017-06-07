@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa7fdbe_1b69be8b",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2017-06-07T07:43:06Z",
+      "side": 0,
+      "message": "So we don\u0027t need these symlinks anymore, do we?",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 72
+      },
+      "revId": "d3593db453ba90b850dc375a8d8c1509d5b34767",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
