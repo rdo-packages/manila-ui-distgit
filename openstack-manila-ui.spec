@@ -81,7 +81,8 @@ done
 # Move config to horizon
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d
-mv manila_ui/local/enabled/_*.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
+mv manila_ui/local/enabled/_80_manila_*.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
+mv manila_ui/local/enabled/_90*_manila_*.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
 mv manila_ui/local/local_settings.d/_90_manila_*.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/
 
 
@@ -96,7 +97,8 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %license LICENSE
 %{python2_sitelib}/%{mod_name}
 %{python2_sitelib}/manila_ui-*-py?.?.egg-info
-%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_*.py*
+%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_80_manila_*.py*
+%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90*_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*
 
 
