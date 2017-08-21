@@ -29,6 +29,7 @@ BuildRequires:  python-django-horizon
 BuildRequires:  python-django-nose
 BuildRequires:  python-django-openstack-auth
 BuildRequires:  python-manilaclient
+BuildRequires:  python-neutronclient
 BuildRequires:  python-mock
 BuildRequires:  python-mox
 BuildRequires:  python-subunit
@@ -44,11 +45,10 @@ Requires: python-django-compressor
 Requires: python-django-horizon
 Requires: python-django-openstack-auth
 Requires: python-iso8601
-Requires: python-keystoneclient
-Requires: python-manilaclient
-Requires: python-neutronclient
-Requires: python-novaclient
+Requires: python-manilaclient >= 1.12.0
 Requires: python-pbr
+Requires: python-oslo-utils >= 3.20.0
+Requires: python-six
 
 %description
 Manila Management Dashboard
