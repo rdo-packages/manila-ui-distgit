@@ -19,7 +19,7 @@ BuildArch:      noarch
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 BuildRequires:  python-sphinx
-BuildRequires:  python-oslo-sphinx
+BuildRequires:  python-openstackdocstheme
 
 %if 0%{with tests}
 # test requirements
@@ -55,7 +55,7 @@ Manila Management Dashboard
 
 
 %prep
-%setup -q -n %{pypi_name}-%{upstream_version}
+%autosetup -n %{pypi_name}-%{upstream_version} -S git
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
@@ -65,9 +65,9 @@ rm test-requirements.txt
 %{__python2} setup.py build
 
 # generate html docs 
-sphinx-build doc/source html
+%{__python2} setup.py build_sphinx -b html
 # remove the sphinx-build leftovers
-rm -rf html/.{doctrees,buildinfo}
+rm -fr doc/build/html/.doctrees doc/build/html/.buildinfo
 
 for lib in %{mod_name}/dashboards/project/*.py; do
   sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
