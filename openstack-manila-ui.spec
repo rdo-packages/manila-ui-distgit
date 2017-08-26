@@ -104,3 +104,4 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/manila-ui/commit/?id=faaf27190b29ac47ff1aea993ee78e8e41979e9d
