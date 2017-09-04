@@ -20,6 +20,7 @@ BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 BuildRequires:  python-sphinx
 BuildRequires:  python-openstackdocstheme
+BuildRequires:  git
 
 %if 0%{with tests}
 # test requirements
