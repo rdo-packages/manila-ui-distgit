@@ -21,6 +21,7 @@ BuildRequires:  python-pbr
 BuildRequires:  python-sphinx
 BuildRequires:  python-openstackdocstheme
 BuildRequires:  git
+BuildRequires:  openstack-macros
 
 %if 0%{with tests}
 # test requirements
@@ -51,6 +52,7 @@ Requires: python-pbr
 Requires: python-oslo-utils >= 3.20.0
 Requires: python-six
 
+
 %description
 Manila Management Dashboard
 
@@ -60,7 +62,7 @@ Manila Management Dashboard
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
-rm test-requirements.txt
+%py_req_cleanup
 
 %build
 %{__python2} setup.py build
