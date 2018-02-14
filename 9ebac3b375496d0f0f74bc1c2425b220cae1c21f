@@ -16,6 +16,24 @@
       "revId": "9ebac3b375496d0f0f74bc1c2425b220cae1c21f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aaa499b_6f760e40",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-02-14T09:14:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aaa499b_2f74869a",
+      "revId": "9ebac3b375496d0f0f74bc1c2425b220cae1c21f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
