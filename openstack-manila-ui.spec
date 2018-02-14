@@ -17,36 +17,37 @@ Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstr
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
-BuildRequires:  python-pbr
-BuildRequires:  python-sphinx
-BuildRequires:  python-openstackdocstheme
+BuildRequires:  python2-pbr
+BuildRequires:  python2-sphinx
+BuildRequires:  python2-openstackdocstheme
 BuildRequires:  git
 BuildRequires:  openstack-macros
 
 %if 0%{with tests}
 # test requirements
 BuildRequires:  openstack-dashboard >= 1:13.0.0
-BuildRequires:  python-hacking
-BuildRequires:  python-django-nose
-BuildRequires:  python-manilaclient
-BuildRequires:  python-neutronclient
-BuildRequires:  python-mock
-BuildRequires:  python-mox
-BuildRequires:  python-subunit
-BuildRequires:  python-testrepository
-BuildRequires:  python-testscenarios
-BuildRequires:  python-testtools
+BuildRequires:  python2-hacking
+BuildRequires:  python2-django-nose
+BuildRequires:  python2-manilaclient
+BuildRequires:  python2-neutronclient
+BuildRequires:  python2-mock
+BuildRequires:  python2-mox
+BuildRequires:  python2-subunit
+BuildRequires:  python2-testrepository
+BuildRequires:  python2-testscenarios
+BuildRequires:  python2-testtools
 %endif
 
 Requires: openstack-dashboard >= 1:13.0.0
-Requires: python-babel
-Requires: python-django
-Requires: python-django-compressor
-Requires: python-iso8601
-Requires: python-manilaclient >= 1.12.0
-Requires: python-pbr
-Requires: python-oslo-utils >= 3.20.0
-Requires: python-six
+Requires: python2-babel
+Requires: python2-django
+Requires: python2-django-compressor
+Requires: python2-iso8601
+Requires: python2-manilaclient >= 1.16.0
+Requires: python2-pbr
+Requires: python2-oslo-utils >= 3.33.0
+Requires: python2-six
+Requires: python2-keystoneclient >= 3.8.0
 
 
 %description
