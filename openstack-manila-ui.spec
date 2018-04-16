@@ -80,12 +80,36 @@ done
 %{__python2} setup.py install --skip-build --root %{buildroot}
 
 # Move config to horizon
+mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled
+mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d
-mv manila_ui/local/enabled/_80_manila_*.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
-mv manila_ui/local/enabled/_90*_manila_*.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
-mv manila_ui/local/local_settings.d/_90_manila_*.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/
 
+# enabled allows toggling of panels and plugins
+pushd .
+cd %{buildroot}%{python2_sitelib}/%{mod_name}/local/enabled
+for f in _(80|90*)_manila_*.py*; do
+    mv ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
+done
+popd
+for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_(80|90*)_manila_*.py*; do
+    filename=`basename $f`
+    ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/${filename} \
+        %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled/${filename}
+done
+
+# local_settings.d allows overriding of settings
+pushd .
+cd %{buildroot}%{python2_sitelib}/%{mod_name}/local/local_settings.d
+for f in _90_manila_*.py*; do
+    mv ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/
+done
+popd
+for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*; do
+    filename=`basename $f`
+    ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${filename} \
+        %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d/${filename}
+done
 
 %check
 %if 0%{with tests}
