@@ -8,7 +8,7 @@
 
 Name:           openstack-%{pypi_name}
 Version:        2.13.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -104,6 +104,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 
 %changelog
+* Tue Apr 17 2018 Victoria Martinez de la Cruz <vimartin@redhat.com> 2.13.0-2
+- Add configs for manila-ui under enabled
+
 * Sat Feb 17 2018 RDO <dev@lists.rdoproject.org> 2.13.0-1
 - Update to 2.13.0
 
