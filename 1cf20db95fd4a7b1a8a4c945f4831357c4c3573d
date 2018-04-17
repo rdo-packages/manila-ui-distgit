@@ -22,6 +22,30 @@
       "revId": "1cf20db95fd4a7b1a8a4c945f4831357c4c3573d",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ab14d0d_05119a52",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 141
+      },
+      "writtenOn": "2018-04-17T15:23:21Z",
+      "side": 1,
+      "message": "yep, this is not about regexp, but bash expansion (like brace expansion):\nhttp://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html",
+      "parentUuid": "1ab14d0d_a5ff8600",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 37
+      },
+      "revId": "1cf20db95fd4a7b1a8a4c945f4831357c4c3573d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
