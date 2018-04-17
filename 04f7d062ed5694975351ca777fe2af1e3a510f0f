@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ab14d0d_053f5ab5",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 141
+      },
+      "writtenOn": "2018-04-17T15:50:10Z",
+      "side": 1,
+      "message": "You need to tune also this section; same lines as 125-126, but with the different prefix (%{_sysconfdir}/openstack-dashboard/enabled/ ...)",
+      "revId": "04f7d062ed5694975351ca777fe2af1e3a510f0f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
