@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ab14d0d_a5ff8600",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2018-04-17T15:15:27Z",
+      "side": 1,
+      "message": "I\u0027ve been playing around with bash, and what worked for me was:\n\nfor f in _{80,90*}_manila_*.py*; do",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 37
+      },
+      "revId": "1cf20db95fd4a7b1a8a4c945f4831357c4c3573d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
