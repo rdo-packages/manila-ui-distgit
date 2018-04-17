@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ab14d0d_8217e0a2",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2018-04-17T08:06:56Z",
+      "side": 1,
+      "message": "This directory does not exist, according to the DLRN failure logs. Based on what we have in the current spec, I guess it should be %{buildroot}%{python2_sitelib}/%{mod_name}/local/enabled",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 53
+      },
+      "revId": "212b968805dba2701b1f7c37799700f397b795a6",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
