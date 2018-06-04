@@ -89,7 +89,7 @@ mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/
 pushd .
 cd %{buildroot}%{python2_sitelib}/%{mod_name}/local/enabled
 for f in _{80,90*}_manila_*.py*; do
-    mv ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
+    cp ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
 done
 popd
 for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_{80,90*}_manila_*.py*; do
@@ -102,7 +102,7 @@ done
 pushd .
 cd %{buildroot}%{python2_sitelib}/%{mod_name}/local/local_settings.d
 for f in _90_manila_*.py*; do
-    mv ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/
+    cp ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/
 done
 popd
 for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*; do
