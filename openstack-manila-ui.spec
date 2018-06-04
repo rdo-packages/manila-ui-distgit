@@ -8,7 +8,7 @@
 
 Name:           openstack-%{pypi_name}
 Version:        2.13.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -89,7 +89,7 @@ mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/
 pushd .
 cd %{buildroot}%{python2_sitelib}/%{mod_name}/local/enabled
 for f in _{80,90*}_manila_*.py*; do
-    mv ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
+    install -p -D -m 640 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/$(f)
 done
 popd
 for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_{80,90*}_manila_*.py*; do
@@ -102,7 +102,7 @@ done
 pushd .
 cd %{buildroot}%{python2_sitelib}/%{mod_name}/local/local_settings.d
 for f in _90_manila_*.py*; do
-    mv ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/
+    install -p -D -m 640 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/$(f)
 done
 popd
 for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*; do
@@ -130,6 +130,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %{_sysconfdir}/openstack-dashboard/local_settings.d/_90_manila_*.py*
 
 %changelog
+* Wed Jun 06 2018 Victoria Martinez de la Cruz <vimartin@redhat.com> 2.13.0-3
+- Copy instead of move configuration files for manila-ui
+
 * Tue Apr 17 2018 Victoria Martinez de la Cruz <vimartin@redhat.com> 2.13.0-2
 - Add configs for manila-ui under enabled
 
