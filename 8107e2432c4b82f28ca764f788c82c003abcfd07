@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab921fb_f3168054",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2018-06-05T06:44:46Z",
+      "side": 1,
+      "message": "I believe the install command is preferred (this is how the other horizon plugins do):\n\n  install -p -D -m 640 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/$(f)",
+      "revId": "8107e2432c4b82f28ca764f788c82c003abcfd07",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
