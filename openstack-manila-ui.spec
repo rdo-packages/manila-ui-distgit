@@ -25,7 +25,7 @@ BuildRequires:  openstack-macros
 
 %if 0%{with tests}
 # test requirements
-BuildRequires:  openstack-dashboard >= 1:13.0.0
+BuildRequires:  openstack-dashboard >= 1:14.0.0
 BuildRequires:  python2-hacking
 BuildRequires:  python2-django-nose
 BuildRequires:  python2-manilaclient
@@ -38,7 +38,7 @@ BuildRequires:  python2-testscenarios
 BuildRequires:  python2-testtools
 %endif
 
-Requires: openstack-dashboard >= 1:13.0.0
+Requires: openstack-dashboard >= 1:14.0.0
 Requires: python2-babel
 Requires: python2-django
 Requires: python2-django-compressor
