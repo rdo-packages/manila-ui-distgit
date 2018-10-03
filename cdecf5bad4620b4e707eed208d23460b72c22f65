@@ -1,0 +1,9 @@
+Code-Review+2: Alfredo Moralejo <amoralej@redhat.com>
+Workflow+1: Alfredo Moralejo <amoralej@redhat.com>
+Code-Review+2: Tom Barron <tpb@dyncloud.net>
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Wed, 03 Oct 2018 19:04:30 +0000
+Reviewed-on: https://review.rdoproject.org/r/16759
+Project: openstack/manila-ui-distgit
+Branch: refs/heads/rpm-master
