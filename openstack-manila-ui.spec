@@ -12,6 +12,7 @@
 %global pypi_name manila-ui
 %global mod_name manila_ui
 
+%global with_doc 1
 # tests are disabled by default
 %bcond_with tests
 
@@ -29,8 +30,10 @@ BuildArch:      noarch
 
 BuildRequires:  python%{pyver}-devel
 BuildRequires:  python%{pyver}-pbr
+%if 0%{?with_doc}
 BuildRequires:  python%{pyver}-sphinx
 BuildRequires:  python%{pyver}-openstackdocstheme
+%endif
 BuildRequires:  git
 BuildRequires:  openstack-macros
 
@@ -75,10 +78,12 @@ rm -rf %{pypi_name}.egg-info
 %build
 %{pyver_build}
 
+%if 0%{?with_doc}
 # generate html docs
 %{pyver_bin} setup.py build_sphinx -b html
 # remove the sphinx-build-%{pyver} leftovers
 rm -fr doc/build/html/.doctrees doc/build/html/.buildinfo
+%endif
 
 for lib in %{mod_name}/dashboards/project/*.py; do
   sed '1{\@^#!/usr/bin/env python@d}' $lib > $lib.new &&
@@ -129,7 +134,10 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 
 %files
-%doc doc/build/html README.rst
+%if 0%{?with_doc}
+%doc doc/build/html
+%endif
+%doc README.rst
 %license LICENSE
 %{pyver_sitelib}/%{mod_name}
 %{pyver_sitelib}/manila_ui-*-py?.?.egg-info
