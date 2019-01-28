@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ad0253b_af81b291",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-01-28T06:26:39Z",
+      "side": 1,
+      "message": "need to bump the release(and add changelog) in order to get cbs build for changes",
+      "range": {
+        "startLine": 11,
+        "startChar": 16,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "151bf698d55c55b08fb821c4cad7ed8e052f411d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
