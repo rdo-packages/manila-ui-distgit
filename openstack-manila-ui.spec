@@ -41,11 +41,9 @@ BuildRequires:  openstack-macros
 # test requirements
 BuildRequires:  openstack-dashboard >= 1:14.0.0
 BuildRequires:  python%{pyver}-hacking
-BuildRequires:  python%{pyver}-django-nose
 BuildRequires:  python%{pyver}-manilaclient
 BuildRequires:  python%{pyver}-neutronclient
 BuildRequires:  python%{pyver}-mock
-BuildRequires:  python%{pyver}-mox
 BuildRequires:  python%{pyver}-subunit
 BuildRequires:  python%{pyver}-testrepository
 BuildRequires:  python%{pyver}-testscenarios
