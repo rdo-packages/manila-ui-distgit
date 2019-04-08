@@ -12,6 +12,9 @@
 %global pypi_name manila-ui
 %global mod_name manila_ui
 
+# RDO
+%global rhosp 0
+
 %global with_doc 1
 # tests are disabled by default
 %bcond_with tests
@@ -106,11 +109,15 @@ for f in _{80,90*}_manila_*.py*; do
     install -p -D -m 644 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/$(f)
 done
 popd
-for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_{80,90*}_manila_*.py*; do
-    filename=`basename $f`
-    ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/${filename} \
-        %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled/${filename}
-done
+
+# NOTE(vkmc) RDO python-django-horizon has a separate folder for local_settings, so we need to create symlinks for the config files
+%if 0%{?rhosp} == 0
+    for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_{80,90*}_manila_*.py*; do
+        filename=`basename $f`
+        ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/${filename} \
+            %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled/${filename}
+    done
+%endif
 
 # local_settings.d allows overriding of settings
 pushd .
@@ -119,11 +126,14 @@ for f in _90_manila_*.py*; do
     install -p -D -m 644 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/$(f)
 done
 popd
-for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*; do
-    filename=`basename $f`
-    ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${filename} \
-        %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d/${filename}
-done
+
+%if 0%{?rhosp} == 0
+    for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*; do
+        filename=`basename $f`
+        ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${filename} \
+            %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d/${filename}
+    done
+%endif
 
 %check
 %if 0%{with tests}
@@ -142,8 +152,11 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_80_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90*_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*
-%{_sysconfdir}/openstack-dashboard/enabled/_80_manila_*.py*
-%{_sysconfdir}/openstack-dashboard/enabled/_90*_manila_*.py*
-%{_sysconfdir}/openstack-dashboard/local_settings.d/_90_manila_*.py*
+
+%if 0%{?rhosp} == 0
+    %{_sysconfdir}/openstack-dashboard/enabled/_80_manila_*.py*
+    %{_sysconfdir}/openstack-dashboard/enabled/_90*_manila_*.py*
+    %{_sysconfdir}/openstack-dashboard/local_settings.d/_90_manila_*.py*
+%endif
 
 %changelog
