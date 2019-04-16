@@ -7,7 +7,7 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:           openstack-%{pypi_name}
-Version:        2.10.2
+Version:        2.10.3
 Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
@@ -105,6 +105,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 
 
 %changelog
+* Tue Apr 16 2019 RDO <dev@lists.rdoproject.org> 2.10.3-1
+- Update to 2.10.3
+
 * Wed Sep 13 2017 rdo-trunk <javier.pena@redhat.com> 2.10.2-1
 - Update to 2.10.2
 
