@@ -7,8 +7,8 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:           openstack-%{pypi_name}
-Version:        2.16.0
-Release:        2%{?dist}
+Version:        2.16.1
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -130,6 +130,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %{_sysconfdir}/openstack-dashboard/local_settings.d/_90_manila_*.py*
 
 %changelog
+* Tue Apr 16 2019 RDO <dev@lists.rdoproject.org> 2.16.1-1
+- Update to 2.16.1
+
 * Wed Jan 30 2019 Victoria Martinez de la Cruz <vimartin@redhat.com> 2.16.0-2
 - Add read permissions for others (rhbz#1661395)
 
