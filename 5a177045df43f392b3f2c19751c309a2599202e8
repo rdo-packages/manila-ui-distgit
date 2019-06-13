@@ -46,6 +46,30 @@
       "revId": "5a177045df43f392b3f2c19751c309a2599202e8",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6284fdc1_6de77e6f",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 363
+      },
+      "writtenOn": "2019-06-13T14:10:05Z",
+      "side": 1,
+      "message": "No, this is right. DLRN sets it to 1 on import",
+      "parentUuid": "342393b2_5a820f3e",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "5a177045df43f392b3f2c19751c309a2599202e8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
