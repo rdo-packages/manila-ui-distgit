@@ -106,7 +106,7 @@ mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/
 pushd .
 cd %{buildroot}%{pyver_sitelib}/%{mod_name}/local/enabled
 for f in _{80,90*}_manila_*.py*; do
-    install -p -D -m 644 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/$(f)
+    install -p -D -m 644 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/${f}
 done
 popd
 
@@ -123,7 +123,7 @@ popd
 pushd .
 cd %{buildroot}%{pyver_sitelib}/%{mod_name}/local/local_settings.d
 for f in _90_manila_*.py*; do
-    install -p -D -m 644 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/$(f)
+    install -p -D -m 644 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${f}
 done
 popd
 
