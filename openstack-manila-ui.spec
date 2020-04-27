@@ -1,14 +1,3 @@
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
-%global pyver_bin python%{pyver}
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
-# End of macros for py2/py3 compatibility
 %global pypi_name manila-ui
 %global mod_name manila_ui
 
@@ -31,38 +20,36 @@ URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python%{pyver}-devel
-BuildRequires:  python%{pyver}-pbr
+BuildRequires:  python3-devel
+BuildRequires:  python3-pbr
 %if 0%{?with_doc}
-BuildRequires:  python%{pyver}-sphinx
-BuildRequires:  python%{pyver}-openstackdocstheme
+BuildRequires:  python3-sphinx
+BuildRequires:  python3-openstackdocstheme
 %endif
 BuildRequires:  git
 BuildRequires:  openstack-macros
 
 %if 0%{with tests}
 # test requirements
-BuildRequires:  openstack-dashboard >= 1:14.0.0
-BuildRequires:  python%{pyver}-hacking
-BuildRequires:  python%{pyver}-manilaclient
-BuildRequires:  python%{pyver}-neutronclient
-BuildRequires:  python%{pyver}-mock
-BuildRequires:  python%{pyver}-subunit
-BuildRequires:  python%{pyver}-testrepository
-BuildRequires:  python%{pyver}-testscenarios
-BuildRequires:  python%{pyver}-testtools
+BuildRequires:  openstack-dashboard >= 1:17.1.0
+BuildRequires:  python3-hacking
+BuildRequires:  python3-manilaclient
+BuildRequires:  python3-neutronclient
+BuildRequires:  python3-mock
+BuildRequires:  python3-subunit
+BuildRequires:  python3-testrepository
+BuildRequires:  python3-testscenarios
+BuildRequires:  python3-testtools
 %endif
 
-Requires: openstack-dashboard >= 1:14.0.0
-Requires: python%{pyver}-babel
-Requires: python%{pyver}-django
-Requires: python%{pyver}-django-compressor
-Requires: python%{pyver}-iso8601
-Requires: python%{pyver}-manilaclient >= 1.16.0
-Requires: python%{pyver}-pbr
-Requires: python%{pyver}-oslo-utils >= 3.33.0
-Requires: python%{pyver}-six
-Requires: python%{pyver}-keystoneclient >= 1:3.8.0
+Requires: openstack-dashboard >= 1:17.1.0
+Requires: python3-django
+Requires: python3-django-compressor
+Requires: python3-iso8601
+Requires: python3-manilaclient >= 1.29.0
+Requires: python3-pbr
+Requires: python3-oslo-utils >= 3.33.0
+Requires: python3-keystoneclient >= 1:3.22.0
 
 
 %description
@@ -77,12 +64,12 @@ rm -rf %{pypi_name}.egg-info
 %py_req_cleanup
 
 %build
-%{pyver_build}
+%{py3_build}
 
 %if 0%{?with_doc}
 # generate html docs
-sphinx-build-%{pyver} -W -b html doc/source doc/build/html
-# remove the sphinx-build-%{pyver} leftovers
+sphinx-build -W -b html doc/source doc/build/html
+# remove the sphinx-build leftovers
 rm -fr doc/build/html/.doctrees doc/build/html/.buildinfo
 %endif
 
@@ -94,7 +81,7 @@ done
 
 
 %install
-%{pyver_install}
+%{py3_install}
 
 # Move config to horizon
 mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled
@@ -104,7 +91,7 @@ mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/
 
 # enabled allows toggling of panels and plugins
 pushd .
-cd %{buildroot}%{pyver_sitelib}/%{mod_name}/local/enabled
+cd %{buildroot}%{python3_sitelib}/%{mod_name}/local/enabled
 for f in _{80,90*}_manila_*.py*; do
     install -p -D -m 644 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/${f}
 done
@@ -121,7 +108,7 @@ popd
 
 # local_settings.d allows overriding of settings
 pushd .
-cd %{buildroot}%{pyver_sitelib}/%{mod_name}/local/local_settings.d
+cd %{buildroot}%{python3_sitelib}/%{mod_name}/local/local_settings.d
 for f in _90_manila_*.py*; do
     install -p -D -m 644 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${f}
 done
@@ -147,8 +134,8 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %endif
 %doc README.rst
 %license LICENSE
-%{pyver_sitelib}/%{mod_name}
-%{pyver_sitelib}/manila_ui-*-py?.?.egg-info
+%{python3_sitelib}/%{mod_name}
+%{python3_sitelib}/manila_ui-*-py?.?.egg-info
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_80_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90*_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*
