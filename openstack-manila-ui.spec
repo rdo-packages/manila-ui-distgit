@@ -11,8 +11,8 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:           openstack-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        3.0.0
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -147,3 +147,6 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %endif
 
 %changelog
+* Thu Apr 30 2020 RDO <dev@lists.rdoproject.org> 3.0.0-1
+- Update to 3.0.0
+
