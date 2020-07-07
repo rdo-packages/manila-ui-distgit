@@ -135,7 +135,7 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{mod_name}
-%{python3_sitelib}/manila_ui-*-py?.?.egg-info
+%{python3_sitelib}/manila_ui-*-py%{python3_version}.egg-info
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_80_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90*_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*
