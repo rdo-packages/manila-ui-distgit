@@ -43,7 +43,6 @@ BuildRequires:  python3-testtools
 %endif
 
 Requires: openstack-dashboard >= 1:17.1.0
-Requires: python3-django
 Requires: python3-django-compressor
 Requires: python3-iso8601
 Requires: python3-manilaclient >= 1.29.0
