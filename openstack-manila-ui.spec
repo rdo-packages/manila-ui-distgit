@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 %global pypi_name manila-ui
@@ -15,7 +14,7 @@
 
 Name:           openstack-%{pypi_name}
 Version:        4.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -25,8 +24,6 @@ Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstr
 Source101:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz.asc
 Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
 %endif
-#
-# patches_base=4.0.0.0rc1
 #
 
 # Required for tarball sources verification
@@ -167,7 +164,8 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %endif
 
 %changelog
-* Wed Oct 14 2020 Joel Capitao <jcapitao@redhat.com> 4.0.0-0.1.0rc1
+* Wed Oct 14 2020 RDO <dev@lists.rdoproject.org> 4.0.0-1
+- Update to 4.0.0
 - Enable sources tarball validation using GPG signature.
 
 * Thu Sep 24 2020 RDO <dev@lists.rdoproject.org> 4.0.0-0.1.0rc1
