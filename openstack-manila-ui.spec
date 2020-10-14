@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %global pypi_name manila-ui
 %global mod_name manila_ui
 
@@ -13,14 +12,12 @@
 
 Name:           openstack-%{pypi_name}
 Version:        4.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
-#
-# patches_base=4.0.0.0rc1
 #
 
 BuildArch:      noarch
@@ -151,6 +148,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %endif
 
 %changelog
+* Wed Oct 14 2020 RDO <dev@lists.rdoproject.org> 4.0.0-1
+- Update to 4.0.0
+
 * Thu Sep 24 2020 RDO <dev@lists.rdoproject.org> 4.0.0-0.1.0rc1
 - Update to 4.0.0.0rc1
 
