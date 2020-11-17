@@ -38,7 +38,7 @@ BuildRequires:  python3-pbr
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-openstackdocstheme
 %endif
-BuildRequires:  git
+BuildRequires:  git-core
 BuildRequires:  openstack-macros
 
 %if 0%{with tests}
