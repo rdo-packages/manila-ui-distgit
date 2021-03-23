@@ -56,11 +56,11 @@ BuildRequires:  python3-testtools
 
 Requires: openstack-dashboard >= 1:17.1.0
 Requires: python3-django-compressor
-Requires: python3-iso8601
+Requires: python3-iso8601 >= 0.1.12
 Requires: python3-manilaclient >= 1.29.0
-Requires: python3-pbr
-Requires: python3-oslo-utils >= 3.33.0
-Requires: python3-keystoneclient >= 1:3.22.0
+Requires: python3-pbr >= 5.5.0
+Requires: python3-oslo-utils >= 4.7.0
+Requires: python3-keystoneclient >= 1:4.1.1
 
 
 %description
