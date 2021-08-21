@@ -103,6 +103,7 @@ mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled
 mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d
+mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/default_policies/
 
 # enabled allows toggling of panels and plugins
 pushd .
@@ -137,6 +138,9 @@ popd
     done
 %endif
 
+mv manila_ui/conf/manila_policy.yaml %{buildroot}%{_sysconfdir}/openstack-dashboard
+mv manila_ui/conf/default_policies/manila.yaml %{buildroot}%{_sysconfdir}/openstack-dashboard/default_policies/
+
 %check
 %if 0%{with tests}
 PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
@@ -154,6 +158,8 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_80_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90*_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*
+%{_sysconfdir}/openstack-dashboard/manila_policy.yaml
+%{_sysconfdir}/openstack-dashboard/default_policies/manila.yaml
 
 %if 0%{?rhosp} == 0
     %{_sysconfdir}/openstack-dashboard/enabled/_80_manila_*.py*
