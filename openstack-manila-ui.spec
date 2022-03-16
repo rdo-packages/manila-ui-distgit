@@ -43,7 +43,7 @@ BuildRequires:  openstack-macros
 
 %if 0%{with tests}
 # test requirements
-BuildRequires:  openstack-dashboard >= 1:17.1.0
+BuildRequires:  openstack-dashboard >= 1:18.3.1
 BuildRequires:  python3-hacking
 BuildRequires:  python3-manilaclient
 BuildRequires:  python3-neutronclient
@@ -54,10 +54,10 @@ BuildRequires:  python3-testscenarios
 BuildRequires:  python3-testtools
 %endif
 
-Requires: openstack-dashboard >= 1:17.1.0
+Requires: openstack-dashboard >= 1:18.3.1
 Requires: python3-django-compressor
 Requires: python3-iso8601 >= 0.1.12
-Requires: python3-manilaclient >= 1.29.0
+Requires: python3-manilaclient >= 2.7.0
 Requires: python3-pbr >= 5.5.0
 Requires: python3-oslo-utils >= 4.7.0
 Requires: python3-keystoneclient >= 1:4.1.1
