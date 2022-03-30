@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x01527a34f0d0080f8a5db8d6eb6c5df21b4b6363
 %global pypi_name manila-ui
@@ -15,14 +14,12 @@
 
 Name:           openstack-%{pypi_name}
 Version:        7.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
-#
-# patches_base=7.0.0.0rc1
 #
 
 # Required for tarball sources verification
@@ -167,6 +164,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %endif
 
 %changelog
+* Wed Mar 30 2022 RDO <dev@lists.rdoproject.org> 7.0.0-1
+- Update to 7.0.0
+
 * Thu Mar 24 2022 RDO <dev@lists.rdoproject.org> 7.0.0-0.1.0rc1
 - Update to 7.0.0.0rc1
 
