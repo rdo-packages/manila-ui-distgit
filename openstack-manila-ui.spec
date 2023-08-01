@@ -8,16 +8,23 @@
 
 %global with_doc 1
 # tests are disabled by default
+# Missing xvfbwrapper which is needed to run unit tests
 %bcond_with tests
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+# we are excluding some BRs from automatic generator
+%global excluded_brs doc8 bandit pre-commit hacking flake8-import-order xvfbwrapper
+# Exclude sphinx from BRs if docs are disabled
+%if ! 0%{?with_doc}
+%global excluded_brs %{excluded_brs} sphinx openstackdocstheme
+%endif
 
 Name:           openstack-%{pypi_name}
 Version:        XXX
 Release:        XXX
 Summary:        Manila Management Dashboard
 
-License:        ASL 2.0
+License:        Apache-2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
 # Required for tarball sources verification
@@ -33,35 +40,12 @@ BuildRequires:  /usr/bin/gpgv2
 %endif
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-pbr
-%if 0%{?with_doc}
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-openstackdocstheme
-%endif
+BuildRequires:  pyproject-rpm-macros
 BuildRequires:  git-core
 BuildRequires:  openstack-macros
-
-%if 0%{with tests}
-# test requirements
 BuildRequires:  openstack-dashboard >= 1:18.3.1
-BuildRequires:  python3-hacking
-BuildRequires:  python3-manilaclient
-BuildRequires:  python3-neutronclient
-BuildRequires:  python3-mock
-BuildRequires:  python3-subunit
-BuildRequires:  python3-testrepository
-BuildRequires:  python3-testscenarios
-BuildRequires:  python3-testtools
-%endif
 
 Requires: openstack-dashboard >= 1:18.3.1
-Requires: python3-django-compressor
-Requires: python3-iso8601 >= 0.1.12
-Requires: python3-manilaclient >= 2.7.0
-Requires: python3-pbr >= 5.5.0
-Requires: python3-oslo-utils >= 4.7.0
-Requires: python3-keystoneclient >= 1:4.1.1
-
 
 %description
 Manila Management Dashboard
@@ -73,17 +57,36 @@ Manila Management Dashboard
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
-%py_req_cleanup
+
+sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
+sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
+sed -i /^minversion.*/d tox.ini
+sed -i /^requires.*virtualenv.*/d tox.ini
+
+# Exclude some bad-known BRs
+for pkg in %{excluded_brs}; do
+  for reqfile in doc/requirements.txt test-requirements.txt; do
+    if [ -f $reqfile ]; then
+      sed -i /^${pkg}.*/d $reqfile
+    fi
+  done
+done
+
+# Automatic BR generation
+%generate_buildrequires
+%if 0%{?with_doc}
+  %pyproject_buildrequires -t -e %{default_toxenv},docs
+%else
+  %pyproject_buildrequires -t -e %{default_toxenv}
+%endif
 
 %build
-%{py3_build}
+%pyproject_wheel
 
 %if 0%{?with_doc}
 # generate html docs
-sphinx-build -W -b html doc/source doc/build/html
+%tox -e docs
 # remove the sphinx-build leftovers
 rm -fr doc/build/html/.doctrees doc/build/html/.buildinfo
 %endif
@@ -96,7 +99,7 @@ done
 
 
 %install
-%{py3_install}
+%pyproject_install
 
 # Move config to horizon
 mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled
@@ -139,7 +142,8 @@ popd
 
 %check
 %if 0%{with tests}
-PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
+export PYTHONPATH=/usr/share/openstack-dashboard/
+%tox -e %{default_toxenv}
 %endif
 
 
@@ -150,7 +154,7 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/%{mod_name}
-%{python3_sitelib}/manila_ui-*-py%{python3_version}.egg-info
+%{python3_sitelib}/manila_ui-*.dist-info
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_80_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/_90*_manila_*.py*
 %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*
