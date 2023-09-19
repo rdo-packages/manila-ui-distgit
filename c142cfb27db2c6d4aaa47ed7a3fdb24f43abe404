@@ -16,6 +16,24 @@
       "message": "This is listing these files twice, if they must be set as config-noreplace, leave only the last two lines the previous two should be removed.",
       "revId": "c142cfb27db2c6d4aaa47ed7a3fdb24f43abe404",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f0617c1_7a26d3e9",
+        "filename": "openstack-manila-ui.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 682
+      },
+      "writtenOn": "2023-09-19T08:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42a71791_dfe84c38",
+      "revId": "c142cfb27db2c6d4aaa47ed7a3fdb24f43abe404",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
