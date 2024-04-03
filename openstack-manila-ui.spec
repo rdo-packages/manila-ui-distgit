@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x2ef3fe0ec2b075ab7458b5f8b702b20b13df2318
 %global pypi_name manila-ui
@@ -22,14 +21,12 @@
 
 Name:           openstack-%{pypi_name}
 Version:        11.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        Apache-2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
-#
-# patches_base=11.0.0.0rc1
 #
 
 # Required for tarball sources verification
@@ -177,6 +174,9 @@ export PYTHONPATH=/usr/share/openstack-dashboard/
 %endif
 
 %changelog
+* Wed Apr 03 2024 RDO <dev@lists.rdoproject.org> 11.0.0-1
+- Update to 11.0.0
+
 * Mon Mar 18 2024 RDO <dev@lists.rdoproject.org> 11.0.0-0.1.0rc1
 - Update to 11.0.0.0rc1
 
