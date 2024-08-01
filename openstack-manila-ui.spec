@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0xa7475c5f2122fec3f90343223fe3bf5aad1080e4
+%global sources_gpg_sign 0xf8675126e2411e7748dd46662fc2093e4682645f
 %global pypi_name manila-ui
 %global mod_name manila_ui
 
@@ -13,7 +13,7 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:           openstack-%{pypi_name}
-Version:        9.0.0
+Version:        9.0.1
 Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
@@ -164,6 +164,9 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %endif
 
 %changelog
+* Thu Aug 01 2024 RDO <dev@lists.rdoproject.org> 9.0.1-1
+- Update to 9.0.1
+
 * Fri Mar 31 2023 RDO <dev@lists.rdoproject.org> 9.0.0-1
 - Update to 9.0.0
 
