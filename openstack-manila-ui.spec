@@ -14,7 +14,7 @@
 
 Name:           openstack-%{pypi_name}
 Version:        9.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        ASL 2.0
@@ -103,7 +103,6 @@ done
 # Move config to horizon
 mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled
-mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d
 
 # enabled allows toggling of panels and plugins
@@ -131,13 +130,6 @@ for f in _90_manila_*.py*; do
 done
 popd
 
-%if 0%{?rhosp} == 0
-    for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*; do
-        filename=`basename $f`
-        ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${filename} \
-            %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d/${filename}
-    done
-%endif
 
 %check
 %if 0%{with tests}
@@ -160,10 +152,12 @@ PYTHONPATH=/usr/share/openstack-dashboard/ ./run_tests.sh -N -P
 %if 0%{?rhosp} == 0
     %{_sysconfdir}/openstack-dashboard/enabled/_80_manila_*.py*
     %{_sysconfdir}/openstack-dashboard/enabled/_90*_manila_*.py*
-    %{_sysconfdir}/openstack-dashboard/local_settings.d/_90_manila_*.py*
 %endif
 
 %changelog
+* Fri Nov 15 2024 Joel Capitao <jcapitao@redhat.com> 9.0.0-2
+- Let local settings files into data directory
+
 * Thu Aug 01 2024 RDO <dev@lists.rdoproject.org> 9.0.1-1
 - Update to 9.0.1
 
