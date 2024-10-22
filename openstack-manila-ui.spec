@@ -21,7 +21,7 @@
 
 Name:           openstack-%{pypi_name}
 Version:        11.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        Apache-2.0
@@ -106,7 +106,6 @@ done
 # Move config to horizon
 mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled
-mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d
 mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/default_policies/
 
@@ -135,14 +134,6 @@ for f in _90_manila_*.py*; do
 done
 popd
 
-%if 0%{?rhosp} == 0
-    for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*; do
-        filename=`basename $f`
-        ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${filename} \
-            %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d/${filename}
-    done
-%endif
-
 mv manila_ui/conf/manila_policy.yaml %{buildroot}%{_sysconfdir}/openstack-dashboard
 mv manila_ui/conf/default_policies/manila.yaml %{buildroot}%{_sysconfdir}/openstack-dashboard/default_policies/
 
@@ -170,10 +161,12 @@ export PYTHONPATH=/usr/share/openstack-dashboard/
 %if 0%{?rhosp} == 0
     %{_sysconfdir}/openstack-dashboard/enabled/_80_manila_*.py*
     %{_sysconfdir}/openstack-dashboard/enabled/_90*_manila_*.py*
-    %{_sysconfdir}/openstack-dashboard/local_settings.d/_90_manila_*.py*
 %endif
 
 %changelog
+* Fri Nov 15 2024 Joel Capitao <jcapitao@redhat.com> 11.0.0-2
+- Let local settings files into data directory
+
 * Wed Apr 03 2024 RDO <dev@lists.rdoproject.org> 11.0.0-1
 - Update to 11.0.0
 
