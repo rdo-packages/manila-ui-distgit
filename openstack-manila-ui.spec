@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x815AFEC729392386480E076DCC0DFE2D21C023C9
+%global sources_gpg_sign 0x815afec729392386480e076dcc0dfe2d21c023c9
 %global pypi_name manila-ui
 %global mod_name manila_ui
 
@@ -106,7 +106,6 @@ done
 # Move config to horizon
 mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled
-mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d
 
 # enabled allows toggling of panels and plugins
@@ -134,13 +133,6 @@ for f in _90_manila_*.py*; do
 done
 popd
 
-%if 0%{?rhosp} == 0
-    for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*; do
-        filename=`basename $f`
-        ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${filename} \
-            %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d/${filename}
-    done
-%endif
 
 %check
 %if 0%{with tests}
@@ -164,7 +156,6 @@ export PYTHONPATH=/usr/share/openstack-dashboard/
 %if 0%{?rhosp} == 0
     %{_sysconfdir}/openstack-dashboard/enabled/_80_manila_*.py*
     %{_sysconfdir}/openstack-dashboard/enabled/_90*_manila_*.py*
-    %{_sysconfdir}/openstack-dashboard/local_settings.d/_90_manila_*.py*
 %endif
 
 %changelog
