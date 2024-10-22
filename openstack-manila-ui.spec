@@ -104,7 +104,6 @@ done
 # Move config to horizon
 mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/enabled
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled
-mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d
 mkdir -p  %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d
 mkdir -p  %{buildroot}%{_sysconfdir}/openstack-dashboard/default_policies/
 
@@ -132,14 +131,6 @@ for f in _90_manila_*.py*; do
     install -p -D -m 644 ${f} %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${f}
 done
 popd
-
-%if 0%{?rhosp} == 0
-    for f in %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/_90_manila_*.py*; do
-        filename=`basename $f`
-        ln -s %{_datadir}/openstack-dashboard/openstack_dashboard/local/local_settings.d/${filename} \
-            %{buildroot}%{_sysconfdir}/openstack-dashboard/local_settings.d/${filename}
-    done
-%endif
 
 mv manila_ui/conf/manila_policy.yaml %{buildroot}%{_sysconfdir}/openstack-dashboard
 mv manila_ui/conf/default_policies/manila.yaml %{buildroot}%{_sysconfdir}/openstack-dashboard/default_policies/
