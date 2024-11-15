@@ -1,0 +1,10 @@
+Code-Review+2: Joel Capitao <jcapitao@redhat.com>
+Code-Review+1: Radomir Dopieralski <rdopiera@redhat.com>
+Code-Review+1: Owen McGonagle <omcgonag@redhat.com>
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Workflow+1: Joel Capitao <jcapitao@redhat.com>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Fri, 15 Nov 2024 09:39:01 +0000
+Reviewed-on: https://review.rdoproject.org/r/c/openstack/manila-ui-distgit/+/55168
+Project: openstack/manila-ui-distgit
+Branch: refs/heads/rpm-master
