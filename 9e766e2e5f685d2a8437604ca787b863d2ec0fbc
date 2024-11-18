@@ -1,0 +1,9 @@
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Code-Review+1: Owen McGonagle <omcgonag@redhat.com>
+Code-Review+2: Joel Capitao <jcapitao@redhat.com>
+Workflow+1: Joel Capitao <jcapitao@redhat.com>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Mon, 18 Nov 2024 15:14:53 +0000
+Reviewed-on: https://review.rdoproject.org/r/c/openstack/manila-ui-distgit/+/55138
+Project: openstack/manila-ui-distgit
+Branch: refs/heads/caracal-rdo
