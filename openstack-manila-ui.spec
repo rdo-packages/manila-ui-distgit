@@ -164,3 +164,4 @@ export PYTHONPATH=/usr/share/openstack-dashboard/
 %endif
 
 %changelog
+# REMOVEME: error caused by commit https://opendev.org/openstack/manila-ui/commit/0aa7d487e5a1958e7ec0413c93262f099bfa35e3
