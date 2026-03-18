@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0xf8675126e2411e7748dd46662fc2093e4682645f
+%global sources_gpg_sign 0x22284f69d9eccdf3df7819791c711af193ff8e54
 %global pypi_name manila-ui
 %global mod_name manila_ui
 
@@ -20,8 +20,8 @@
 %endif
 
 Name:           openstack-%{pypi_name}
-Version:        12.0.0
-Release:        2%{?dist}
+Version:        12.0.1
+Release:        1%{?dist}
 Summary:        Manila Management Dashboard
 
 License:        Apache-2.0
@@ -164,6 +164,9 @@ export PYTHONPATH=/usr/share/openstack-dashboard/
 %endif
 
 %changelog
+* Wed Mar 18 2026 RDO <dev@lists.rdoproject.org> 12.0.1-1
+- Update to 12.0.1
+
 * Fri Nov 15 2024 Joel Capitao <jcapitao@redhat.com> 12.0.0-2
 - Let local settings files into data directory
 
